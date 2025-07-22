@@ -1,0 +1,134 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1753219994550
+  modified: 1753219994550
+  description: ""
+collection:
+  - name: Multi-Search
+    meta:
+      id: fld_3164204ade504015b6b6781f3bbcd8b1
+      created: 1753220220941
+      modified: 1753220394126
+      sortKey: -1753220220942
+      description: ""
+    children:
+      - url: http://localhost:5222/equipment
+        name: Equipment
+        meta:
+          id: req_246dbf75b3a3439582071f359875127c
+          created: 1753220114943
+          modified: 1753220227345
+          isPrivate: false
+          description: ""
+          sortKey: -1753220227324
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5222/material
+        name: Material
+        meta:
+          id: req_b628512e29084ee9aea974c40c81f85f
+          created: 1753220243474
+          modified: 1753220287367
+          isPrivate: false
+          description: ""
+          sortKey: -1753220243474
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5222/purchaseorders
+        name: Purchaseorders
+        meta:
+          id: req_59171b0555dd44ce8de16ea9982a17cf
+          created: 1753220301482
+          modified: 1753220318300
+          isPrivate: false
+          description: ""
+          sortKey: -1753220301482
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5222/salesorders
+        name: Salesorders
+        meta:
+          id: req_c3295057c31d475bbe1923339dba96da
+          created: 1753220386935
+          modified: 1753220417848
+          isPrivate: false
+          description: ""
+          sortKey: -1753220386935
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5222/workforce
+        name: workforce
+        meta:
+          id: req_95ce382dc92f4c0e847f928c4be2dc6e
+          created: 1753220426770
+          modified: 1753220439493
+          isPrivate: false
+          description: ""
+          sortKey: -1753220426770
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1753220077635
+    modified: 1753220077635
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1753220077559
+    modified: 1753220077559
+    isPrivate: false
