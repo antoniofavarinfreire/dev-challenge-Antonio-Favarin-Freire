@@ -1,4 +1,8 @@
 using Equipment.Routes;
+using Material.Routes;
+using PurschasseOrders.Routes;
+using SalesOrders.Routes;
+using Workforce.Routes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,5 +21,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.EquipmentRoutes();
-
+app.MaterialRouters();
+app.PurchaseOrdersRouters();
+app.SalesOrdersRouters();
+app.WorkforceRouters();
 app.Run();
