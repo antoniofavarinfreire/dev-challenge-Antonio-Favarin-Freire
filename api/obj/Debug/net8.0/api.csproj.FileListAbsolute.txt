@@ -27,10 +27,8 @@ C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8
 C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\api.pdb
 C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\api.genruntimeconfig.cache
 C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\ref\api.dll
-C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\bin\Debug\net8.0\api.staticwebassets.endpoints.json
-C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\rpswa.dswa.cache.json
-C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\rjimswa.dswa.cache.json
-C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
-C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
-C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\staticwebassets.build.json.cache
-C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\staticwebassets\msbuild.api.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\staticwebassets\msbuild.build.api.props
+C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.api.props
+C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.api.props
+C:\Users\favar\Documents\dev-challenge-Antonio-Favarin-Freire\api\obj\Debug\net8.0\staticwebassets.pack.json
