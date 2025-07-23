@@ -29,7 +29,6 @@ export class ShowSaleOrder  implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
    if (changes['searchText']) {
-      console.log('busca:', this.searchText);
       this.applyFilter();
     }
   }
@@ -45,7 +44,6 @@ export class ShowSaleOrder  implements OnInit {
         this.applyFilter();
         this.loading = false;
         this.cdr.detectChanges();
-        console.log('pedidos de venda carregados:', data);
       },
       error: (err) => {
         this.error = 'Erro ao carregar equipamentos: ' + err.message;
@@ -58,12 +56,9 @@ export class ShowSaleOrder  implements OnInit {
 
    applyFilter() {
   const search = this.searchText.trim().toLowerCase();
-  console.log('sale order', this.salesOrders)
-  console.log("search",!search)
   if (!search) {
     this.salesOrders = [...this.allSalesOrders];
   } else {
-    console.log("sales orders",this.salesOrders)
     this.salesOrders = this.allSalesOrders.filter(order =>
       order.salesOrderID.toString().includes(search) ||
       order.customer.toLowerCase().includes(search) ||

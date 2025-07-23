@@ -32,7 +32,6 @@ export class ShowEquiptment implements OnInit{
           this.equipments = data;
           this.loading = false;
           this.cdr.detectChanges();
-          console.log('Purchase orders loaded:', data); // Debug log
         
       },
       error: (err) => {
@@ -40,7 +39,6 @@ export class ShowEquiptment implements OnInit{
           this.error = 'Erro ao carregar ordem de compra: ' + err.message;
           this.loading = false;
           this.cdr.detectChanges();
-          console.error('Error loading purchase orders:', err); // Debug log
         
       }
     });

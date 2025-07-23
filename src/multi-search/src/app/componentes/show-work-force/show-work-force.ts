@@ -30,16 +30,12 @@ export class ShowWorkForce implements OnInit {
           this.workForce = data;
           this.loading = false;
           this.cdr.detectChanges();
-          console.log('Purchase orders loaded:', data); // Debug log
-        
       },
       error: (err) => {
         
           this.error = 'Erro ao carregar ordem de compra: ' + err.message;
           this.loading = false;
-          this.cdr.detectChanges();
-          console.error('Error loading purchase orders:', err); // Debug log
-        
+          this.cdr.detectChanges();        
       }
     });
   }
