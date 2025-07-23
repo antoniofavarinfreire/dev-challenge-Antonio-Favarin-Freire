@@ -15,8 +15,20 @@
   <div class="row justify-content-center align-items-center">
     <div class="col-md-7 col-lg-4">
       <div class="text-center mb-5">
-        <app-show-search />
-        <app-show-sale-order />
+        <div class="input-group" >
+          <input     
+            type="text"     
+            class="form-control"     
+            placeholder="Digite sua busca"     
+            [(ngModel)]="searchText"
+          />   
+          <button class="btn btn-outline-secondary" type="button" (click)="onSearch()">     
+            <i class="material-icons">search</i>
+          </button> 
+        </div>
+
+        <!-- <app-show-search [searchText] =  /> -->
+        <app-show-sale-order [searchText] = "searchText"/>
         <app-show-purchase-order />
         <app-show-equiptment />
         <app-show-material />
