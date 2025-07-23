@@ -24,10 +24,10 @@
 
             <div *ngFor="let purchaseOrder of purchaseOrders" class="purchase-order-card">
                 <div class="row py-2">
-                    <div class="col-2">
+                    <div class="col-3 text-start">
                         <span class="purchase-order-id" style="border-bottom: 2px solid red ;color: red; font-size: 16px; font-weight: 500;">#{{ purchaseOrder.purchaseOrderID }}</span>
                     </div>
-                    <div class="col-7 text-start">
+                    <div class="col-6 text-start">
                         <span class="purchase-order-name" style="font-weight: 500;">{{ purchaseOrder.materialName }}</span>
                     </div>
                      <div class="col-3 text-start">
