@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PurchaseOrdersService } from '../../services/purchaseorders.service';
 import { MaterialService } from '../../services/material.service';
@@ -15,11 +15,20 @@ export class ShowMaterial  implements OnInit {
   loading = false;
   error: string | null = null;
   materials: Material[] = [];
+  allMaterials: Material[] = [];
+
+  @Input() searchText: string = '';
   
   constructor(private materialService: MaterialService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.loadMaterial();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+   if (changes['searchText']) {
+      this.applyFilter();
+    }
   }
 
   loadMaterial() {
@@ -29,6 +38,8 @@ export class ShowMaterial  implements OnInit {
     this.materialService.getEquipments().subscribe({
       next: (data) => {
         this.materials = data;
+        this.allMaterials = data;
+        this.applyFilter();
         this.loading = false;
         this.cdr.detectChanges();
       },
@@ -38,5 +49,17 @@ export class ShowMaterial  implements OnInit {
         this.cdr.detectChanges();
       }
     });
+  }
+  
+  applyFilter() {
+    const search = this.searchText.trim().toLowerCase();
+    if (!search) {
+      this.materials = [...this.allMaterials];
+    } else {
+      this.materials = this.allMaterials.filter(material =>
+        material.materialID.toString().includes(search) ||
+        material.materialName.toLowerCase().includes(search)
+      );
+    }
   }
 }
