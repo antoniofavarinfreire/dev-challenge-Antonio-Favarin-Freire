@@ -57,7 +57,7 @@ export class ShowMaterial  implements OnInit {
       this.materials = [...this.allMaterials];
     } else {
       this.materials = this.allMaterials.filter(material =>
-        material.materialID.toString().includes(search) ||
+        material.materialID.toLowerCase().includes(search) ||
         material.materialName.toLowerCase().includes(search)
       );
     }
