@@ -63,7 +63,8 @@ export class ShowSaleOrder  implements OnInit {
           order.salesOrderID.toString().includes(search) ||
           order.customer.toLowerCase().includes(search) ||
           order.materialID.toLowerCase().includes(search) ||
-          order.materialName.toLowerCase().includes(search)
+          order.materialName.toLowerCase().includes(search) ||
+          order.quantity.toString().includes(search)
         );
       }
     }
