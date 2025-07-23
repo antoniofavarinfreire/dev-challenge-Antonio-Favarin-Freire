@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, NgZone, ChangeDetectorRef, Input, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PurchaseOrders } from '../../models/purchaseorders.interface';
 import { PurchaseOrdersService } from '../../services/purchaseorders.service';
@@ -12,16 +12,25 @@ import { PurchaseOrdersService } from '../../services/purchaseorders.service';
   styleUrl: './show-purchase-order.css'
 })
 export class ShowPurchaseOrder implements OnInit {
-  searchText: string = '';
+
   purchaseOrders: PurchaseOrders[] = [];
+  allPurchaseOrders: PurchaseOrders[] = [];
   loading = false;
   error: string | null = null;
+
+  @Input() searchText: string = '';
   
   constructor(private purchaseOrdersService: PurchaseOrdersService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     // Carrega automaticamente quando o componente inicializa
     this.loadPurchaseOrders();
+  }
+  
+   ngOnChanges(changes: SimpleChanges) {
+   if (changes['searchText']) {
+      this.applyFilter();
+    }
   }
 
   loadPurchaseOrders() {
@@ -32,10 +41,10 @@ export class ShowPurchaseOrder implements OnInit {
       next: (data) => {
         
           this.purchaseOrders = data;
+          this.allPurchaseOrders = data;
+          this.applyFilter();
           this.loading = false;
           this.cdr.detectChanges();
-         
-        
       },
       error: (err) => {
         
@@ -46,5 +55,21 @@ export class ShowPurchaseOrder implements OnInit {
         
       }
     });
+  }
+
+  applyFilter() {
+    const search = this.searchText.trim().toLowerCase();
+    if (!search) {
+      this.purchaseOrders = [...this.allPurchaseOrders];
+    } else {
+      this.purchaseOrders = this.allPurchaseOrders.filter(order =>
+        order.purchaseOrderID.toString().includes(search) ||
+        order.supplier.toLowerCase().includes(search) ||
+        order.materialID.toLowerCase().includes(search) ||
+        order.materialName.toLowerCase().includes(search) || 
+        order.quantity.toString().includes(search) ||
+        order.totalCost.toString().includes(search)
+      );
+    }
   }
 }

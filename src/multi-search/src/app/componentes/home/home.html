@@ -22,14 +22,13 @@
             placeholder="Digite sua busca"     
             [(ngModel)]="searchText"
           />   
-          <button class="btn btn-outline-secondary" type="button" (click)="onSearch()">     
+          <!-- <button class="btn btn-outline-secondary" type="button" >     
             <i class="material-icons">search</i>
-          </button> 
+          </button>  -->
         </div>
 
-        <!-- <app-show-search [searchText] =  /> -->
         <app-show-sale-order [searchText] = "searchText"/>
-        <app-show-purchase-order />
+        <app-show-purchase-order [searchText] = "searchText"/>
         <app-show-equiptment />
         <app-show-material />
         <app-show-work-force />

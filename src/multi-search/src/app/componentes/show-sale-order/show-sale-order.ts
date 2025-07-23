@@ -55,17 +55,17 @@ export class ShowSaleOrder  implements OnInit {
   }
 
    applyFilter() {
-  const search = this.searchText.trim().toLowerCase();
-  if (!search) {
-    this.salesOrders = [...this.allSalesOrders];
-  } else {
-    this.salesOrders = this.allSalesOrders.filter(order =>
-      order.salesOrderID.toString().includes(search) ||
-      order.customer.toLowerCase().includes(search) ||
-      order.materialID.toLowerCase().includes(search) ||
-      order.materialName.toLowerCase().includes(search)
-    );
-  }
-}
+      const search = this.searchText.trim().toLowerCase();
+      if (!search) {
+        this.salesOrders = [...this.allSalesOrders];
+      } else {
+        this.salesOrders = this.allSalesOrders.filter(order =>
+          order.salesOrderID.toString().includes(search) ||
+          order.customer.toLowerCase().includes(search) ||
+          order.materialID.toLowerCase().includes(search) ||
+          order.materialName.toLowerCase().includes(search)
+        );
+      }
+    }
 
 }
