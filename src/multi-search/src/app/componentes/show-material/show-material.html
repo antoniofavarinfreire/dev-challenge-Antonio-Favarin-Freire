@@ -1,1 +1,38 @@
-<p>show-material works!</p>
+<div class="container-show mb-4" style="border: 1px solid #ccc; border-radius: 1%;">
+    <div class="p-2" style="border-bottom: 1px solid #ccc;">
+        <div class="d-flex justify-content-between">
+            <span style="font-weight: bold; font-size: 16px;">Produtos</span>
+            <span style="color: #ccc;">({{ materials.length }} itens encontrados)</span>
+        </div>
+    </div>
+    <div class="p-2">
+        
+        <div *ngIf="loading" class="loading">
+            Carregando pedidos de compra...
+        </div>
+
+        <!-- Mensagem de erro -->
+        <div *ngIf="error" class="error">
+            {{ error }}
+        </div>
+
+        <!-- Lista de pedidos de compra -->
+        <div *ngIf="!loading && !error" class="purchase-orders">
+            <div *ngIf="materials.length === 0" class="no-results">
+                Nenhum pedido encontrado.
+            </div>
+
+            <div *ngFor="let material of materials" class="purchase-order-card">
+                <div class="row py-2">
+                    <div class="col-2">
+                        <span class="purchase-order-id" style="border-bottom: 2px solid red ;color: red; font-size: 16px; font-weight: 500;">#{{ material.materialID }}</span>
+                    </div>
+                     <div class="col-10 text-start">
+                        <span class="purchase-order-name"  style="font-weight: 500;">Qtd: {{ material.materialName }} pç</span>
+                    </div>
+                    <!-- Adicione mais campos conforme necessário -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
