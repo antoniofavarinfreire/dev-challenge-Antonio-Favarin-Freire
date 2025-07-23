@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-between">
             <span style="font-weight: bold; font-size: 16px;">Mão de obra</span>
              <div *ngIf="workForce.length === 0" style="color: #ccc;">
-                Nenhum pedido encontrado
+                Nenhuma mão de obra encontrado
             </div>
             <span *ngIf="workForce.length > 0" style="color: #ccc;">({{ workForce.length }} itens encontrados)</span>
         </div>
@@ -11,7 +11,7 @@
     <div class="p-2">
         
         <div *ngIf="loading" class="loading">
-            Carregando pedidos de compra...
+            Carregando mão de obra...
         </div>
 
         <!-- Mensagem de erro -->
@@ -19,10 +19,10 @@
             {{ error }}
         </div>
 
-        <!-- Lista de pedidos de compra -->
+        
         <div *ngIf="!loading && !error" class="purchase-orders">
             <div *ngIf="workForce.length === 0" style="font-size: 14px; color: #ccc;">
-                Nenhum pedido encontrado.
+                Nenhuma mão de obra
             </div>
 
             <div *ngFor="let workForce of workForce" class="purchase-order-card">
@@ -36,7 +36,7 @@
                      <div class="col-3 text-start">
                         <span class="purchase-order-name"  style="font-weight: 500;">{{ workForce.shift }}</span>
                     </div>
-                    <!-- Adicione mais campos conforme necessário -->
+                    
                 </div>
             </div>
         </div>

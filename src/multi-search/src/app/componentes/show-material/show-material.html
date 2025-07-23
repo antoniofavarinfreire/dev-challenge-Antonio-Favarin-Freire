@@ -4,7 +4,7 @@
             <span style="font-weight: bold; font-size: 16px;">Produtos</span>
             
             <div *ngIf="materials.length === 0" style="color: #ccc;">
-                Nenhum pedido encontrado
+                Nenhum produto encontrado
             </div>
             <span *ngIf="materials.length > 0" style="color: #ccc;">({{ materials.length }} itens encontrados)</span>
         </div>
@@ -12,7 +12,7 @@
     <div class="p-2">
         
         <div *ngIf="loading" class="loading">
-            Carregando pedidos de compra...
+            Carregando produto de compra...
         </div>
 
         <!-- Mensagem de erro -->
@@ -20,7 +20,6 @@
             {{ error }}
         </div>
 
-        <!-- Lista de pedidos de compra -->
         <div *ngIf="!loading && !error" class="purchase-orders">
             <div *ngIf="materials.length === 0" style="font-size: 14px; color: #ccc;">
                 Nenhum pedido encontrado.
@@ -34,7 +33,6 @@
                      <div class="col-9 text-start">
                         <span class="purchase-order-name"  style="font-weight: 500;"> {{ material.materialName }} </span>
                     </div>
-                    <!-- Adicione mais campos conforme necessário -->
                 </div>
             </div>
         </div>

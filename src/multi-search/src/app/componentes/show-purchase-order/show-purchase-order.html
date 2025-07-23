@@ -19,7 +19,6 @@
             {{ error }}
         </div>
 
-        <!-- Lista de pedidos de compra -->
         <div *ngIf="!loading && !error" class="purchase-orders">
             <div *ngIf="purchaseOrders.length === 0"style="font-size: 14px; color: #ccc;">
                 Nenhum pedido encontrado.
@@ -36,7 +35,6 @@
                      <div class="col-3 text-start">
                         <span class="purchase-order-name"  style="font-weight: 500;">Qtd: {{ purchaseOrder.quantity }} pç</span>
                     </div>
-                    <!-- Adicione mais campos conforme necessário -->
                 </div>
             </div>
         </div>
