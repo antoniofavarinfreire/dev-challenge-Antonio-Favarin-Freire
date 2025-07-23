@@ -62,7 +62,7 @@ export class ShowEquiptment implements OnInit{
       this.equipments = [...this.allEquipments];
     } else {
       this.equipments = this.allEquipments.filter(equipment =>
-        equipment.equipmentID.toString().includes(search) ||
+        equipment.equipmentID.toLowerCase().includes(search) ||
         equipment.equipmentName.toLowerCase().includes(search)
       );
     }

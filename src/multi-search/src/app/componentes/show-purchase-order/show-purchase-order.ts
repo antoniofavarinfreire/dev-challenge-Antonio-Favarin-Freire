@@ -64,11 +64,8 @@ export class ShowPurchaseOrder implements OnInit {
     } else {
       this.purchaseOrders = this.allPurchaseOrders.filter(order =>
         order.purchaseOrderID.toString().includes(search) ||
-        order.supplier.toLowerCase().includes(search) ||
-        order.materialID.toLowerCase().includes(search) ||
         order.materialName.toLowerCase().includes(search) || 
-        order.quantity.toString().includes(search) ||
-        order.totalCost.toString().includes(search)
+        order.quantity.toString().includes(search) 
       );
     }
   }
