@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Workforce } from '../../models/workforce.interface';
 import { WorkforceService } from '../../services/workforce.service';
@@ -12,12 +12,21 @@ import { WorkforceService } from '../../services/workforce.service';
 })
 export class ShowWorkForce implements OnInit {
   workForce: Workforce[] = [];
+  allWorkForce: Workforce[] = [];
   loading = false;
   error: string | null = null;
+
+  @Input() searchText: string = '';
 
   constructor(private workForceService: WorkforceService, private cdr: ChangeDetectorRef) {}
   ngOnInit(): void {
     this.loadWorkForce();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+   if (changes['searchText']) {
+      this.applyFilter();
+    }
   }
 
   loadWorkForce() {
@@ -28,6 +37,8 @@ export class ShowWorkForce implements OnInit {
       next: (data) => {
         
           this.workForce = data;
+          this.allWorkForce = data;
+          this.applyFilter();
           this.loading = false;
           this.cdr.detectChanges();
       },
@@ -38,5 +49,18 @@ export class ShowWorkForce implements OnInit {
           this.cdr.detectChanges();        
       }
     });
+  }
+
+  applyFilter() {
+    const search = this.searchText.trim().toLowerCase();
+    if (!search) {
+      this.workForce = [...this.allWorkForce];
+    } else {
+      this.workForce = this.allWorkForce.filter(workForce =>
+        workForce.workforceID.toString().includes(search) ||
+        workForce.name.toLowerCase().includes(search) ||
+        workForce.shift.toLowerCase().includes(search)
+      );
+    }
   }
 }
