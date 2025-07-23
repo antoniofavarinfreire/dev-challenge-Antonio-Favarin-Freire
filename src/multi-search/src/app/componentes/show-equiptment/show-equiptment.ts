@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EquipmentService } from '../../services/equipment.service';
 import { Equipment } from '../../models/equipment.interface';
@@ -12,14 +12,24 @@ import { Equipment } from '../../models/equipment.interface';
 })
 export class ShowEquiptment implements OnInit{
   equipments: Equipment[] = [];
+  allEquipments: Equipment[] = [];
   loading = false;
   error: string | null = null;
+
+  @Input() searchText: string = '';
   
   constructor(private equipmentService: EquipmentService, private cdr: ChangeDetectorRef) {}
 
 
   ngOnInit(): void {
     this.loadEquipments();
+  }
+
+
+  ngOnChanges(changes: SimpleChanges) {
+   if (changes['searchText']) {
+      this.applyFilter();
+    }
   }
 
   loadEquipments() {
@@ -30,6 +40,8 @@ export class ShowEquiptment implements OnInit{
       next: (data) => {
         
           this.equipments = data;
+          this.allEquipments = data;
+          this.applyFilter();
           this.loading = false;
           this.cdr.detectChanges();
         
@@ -42,5 +54,17 @@ export class ShowEquiptment implements OnInit{
         
       }
     });
+  }
+
+  applyFilter() {
+    const search = this.searchText.trim().toLowerCase();
+    if (!search) {
+      this.equipments = [...this.allEquipments];
+    } else {
+      this.equipments = this.allEquipments.filter(equipment =>
+        equipment.equipmentID.toString().includes(search) ||
+        equipment.equipmentName.toLowerCase().includes(search)
+      );
+    }
   }
 }
