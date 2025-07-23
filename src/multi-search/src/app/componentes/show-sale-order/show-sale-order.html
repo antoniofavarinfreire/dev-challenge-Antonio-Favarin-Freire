@@ -2,7 +2,10 @@
     <div class="p-2" style="border-bottom: 1px solid #ccc;">
         <div class="d-flex justify-content-between">
             <span style="font-weight: bold; font-size: 16px;">Pedidos de Venda</span>
-            <span style="color: #ccc;">({{ salesOrders.length }} itens encontrados)</span>
+             <div *ngIf="salesOrders.length === 0" style="color: #ccc;">
+                Nenhum pedido encontrado
+            </div>
+            <span *ngIf="salesOrders.length > 0" style="color: #ccc;">({{ salesOrders.length }} itens encontrados)</span>
         </div>
     </div>
     <div class="p-2">
