@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Equipment } from '../../models/quipment.interface';
+import { Equipment } from '../../models/equipment.interface';
 import { EquipmentService } from '../../services/equipment.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-show-search',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './show-search.html',
   styleUrl: './show-search.css'
 })

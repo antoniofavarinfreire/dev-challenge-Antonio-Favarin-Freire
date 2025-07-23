@@ -1,0 +1,41 @@
+<div class="container-show my-4" style="border: 1px solid #ccc; border-radius: 1%;">
+    <div class="p-2" style="border-bottom: 1px solid #ccc;">
+        <div class="d-flex justify-content-between">
+            <span style="font-weight: bold; font-size: 16px;">Pedidos de Compra</span>
+            <span>({{ salesOrders.length }} itens encontrados)</span>
+        </div>
+    </div>
+    <div class="p-2">
+        
+        <div *ngIf="loading" class="loading">
+            Carregando pedidos de compra...
+        </div>
+
+        <!-- Mensagem de erro -->
+        <div *ngIf="error" class="error">
+            {{ error }}
+        </div>
+
+        <!-- Lista de pedidos de compra -->
+        <div *ngIf="!loading && !error" class="sales-orders">
+            <div *ngIf="salesOrders.length === 0" class="no-results">
+                Nenhum pedido encontrado.
+            </div>
+
+            <div *ngFor="let salesOrder of salesOrders" class="sales-order-card">
+                <div class="row py-2">
+                    <div class="col-2">
+                        <span class="sales-order-id" style="border-bottom: 2px solid red ;color: red; font-size: 16px; font-weight: 500;">#{{ salesOrder.salesOrderID }}</span>
+                    </div>
+                    <div class="col-7 text-start">
+                        <span class="sales-order-name" style="font-weight: 500;">{{ salesOrder.materialName }}</span>
+                    </div>
+                     <div class="col-3 text-start">
+                        <span class="sales-order-name"  style="font-weight: 500;">Qtd: {{ salesOrder.quantity }} pç</span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

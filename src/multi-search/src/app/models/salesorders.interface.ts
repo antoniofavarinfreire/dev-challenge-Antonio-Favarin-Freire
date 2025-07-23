@@ -1,4 +1,4 @@
-export interface PurchaseOrders {
+export interface SalesOrders {
     salesOrderID: number,
     deliveryDate: string,
     customer: string,

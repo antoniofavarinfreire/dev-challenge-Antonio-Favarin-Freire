@@ -9,3 +9,27 @@
     <i class="material-icons">search</i>
   </button> 
 </div>
+ 
+
+   <!-- Lista de equipamentos -->
+  <div *ngIf="!loading && !error" class="equipment-list">
+    <div *ngIf="equipments.length === 0" class="no-results">
+      Nenhum equipamento encontrado.
+    </div>
+
+    <div *ngFor="let equipment of equipments" class="equipment-card">
+      
+      <div class="row">
+        <div class="col">
+          <span class="equipment-id">#{{ equipment.equipmentID }}</span>
+        </div>
+        <div class="col">
+          <span class="equipment-name">{{ equipment.equipmentName }}</span>
+        </div>
+      </div>
+      
+      
+
+      
+    </div>
+  </div>
