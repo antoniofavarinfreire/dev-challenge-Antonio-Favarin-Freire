@@ -22,16 +22,15 @@
             placeholder="Digite sua busca"     
             [(ngModel)]="searchText"
           />   
-          <!-- <button class="btn btn-outline-secondary" type="button" >     
-            <i class="material-icons">search</i>
-          </button>  -->
         </div>
-
-        <app-show-sale-order [searchText] = "searchText"/>
-        <app-show-purchase-order [searchText] = "searchText"/>
-        <app-show-material [searchText] = "searchText"/>
-        <app-show-equiptment [searchText] = "searchText"/>
-        <app-show-work-force [searchText] = "searchText"/>
+        <div class="pt-3 text-start" style="font-size: 14px; color: #ccc;">
+          Foram encontrados {{ lastSearchLength }} resultados:
+        </div>
+        <app-show-sale-order [searchText] = "searchText"  (searchLength)="onLengthReceived('sale', $event)"/>
+        <app-show-purchase-order [searchText] = "searchText" (searchLength)="onLengthReceived('purchase', $event)"/>
+        <app-show-material [searchText] = "searchText" (searchLength)="onLengthReceived('material', $event)"/>
+        <app-show-equiptment [searchText] = "searchText" (searchLength)="onLengthReceived('equiptment', $event)"/>
+        <app-show-work-force [searchText] = "searchText" (searchLength)="onLengthReceived('workforce', $event)"/>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Workforce } from '../../models/workforce.interface';
 import { WorkforceService } from '../../services/workforce.service';
@@ -17,6 +17,7 @@ export class ShowWorkForce implements OnInit {
   error: string | null = null;
 
   @Input() searchText: string = '';
+  @Output() searchLength = new EventEmitter<number>();
 
   constructor(private workForceService: WorkforceService, private cdr: ChangeDetectorRef) {}
   ngOnInit(): void {
@@ -39,6 +40,7 @@ export class ShowWorkForce implements OnInit {
           this.workForce = data;
           this.allWorkForce = data;
           this.applyFilter();
+          this.searchLength.emit(this.workForce.length);
           this.loading = false;
           this.cdr.detectChanges();
       },
@@ -55,12 +57,14 @@ export class ShowWorkForce implements OnInit {
     const search = this.searchText.trim().toLowerCase();
     if (!search) {
       this.workForce = [...this.allWorkForce];
+      this.searchLength.emit(this.workForce.length);
     } else {
       this.workForce = this.allWorkForce.filter(workForce =>
         workForce.workforceID.toString().includes(search) ||
         workForce.name.toLowerCase().includes(search) ||
         workForce.shift.toLowerCase().includes(search)
       );
+      this.searchLength.emit(this.workForce.length);
     }
   }
 }

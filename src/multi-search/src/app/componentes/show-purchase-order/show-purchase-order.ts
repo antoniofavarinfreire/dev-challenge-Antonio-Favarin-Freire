@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, NgZone, ChangeDetectorRef, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, NgZone, ChangeDetectorRef, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PurchaseOrders } from '../../models/purchaseorders.interface';
 import { PurchaseOrdersService } from '../../services/purchaseorders.service';
@@ -19,6 +19,7 @@ export class ShowPurchaseOrder implements OnInit {
   error: string | null = null;
 
   @Input() searchText: string = '';
+  @Output() searchLength = new EventEmitter<number>();
   
   constructor(private purchaseOrdersService: PurchaseOrdersService, private cdr: ChangeDetectorRef) {}
 
@@ -43,6 +44,7 @@ export class ShowPurchaseOrder implements OnInit {
           this.purchaseOrders = data;
           this.allPurchaseOrders = data;
           this.applyFilter();
+          this.searchLength.emit(this.purchaseOrders.length);
           this.loading = false;
           this.cdr.detectChanges();
       },
@@ -61,12 +63,14 @@ export class ShowPurchaseOrder implements OnInit {
     const search = this.searchText.trim().toLowerCase();
     if (!search) {
       this.purchaseOrders = [...this.allPurchaseOrders];
+      this.searchLength.emit(this.purchaseOrders.length);
     } else {
       this.purchaseOrders = this.allPurchaseOrders.filter(order =>
         order.purchaseOrderID.toString().includes(search) ||
         order.materialName.toLowerCase().includes(search) || 
         order.quantity.toString().includes(search) 
       );
+       this.searchLength.emit(this.purchaseOrders.length);
     }
   }
 }

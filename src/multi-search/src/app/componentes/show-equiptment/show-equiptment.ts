@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EquipmentService } from '../../services/equipment.service';
 import { Equipment } from '../../models/equipment.interface';
@@ -17,7 +17,7 @@ export class ShowEquiptment implements OnInit{
   error: string | null = null;
 
   @Input() searchText: string = '';
-  
+  @Output() searchLength = new EventEmitter<number>();
   constructor(private equipmentService: EquipmentService, private cdr: ChangeDetectorRef) {}
 
 
@@ -42,6 +42,7 @@ export class ShowEquiptment implements OnInit{
           this.equipments = data;
           this.allEquipments = data;
           this.applyFilter();
+          this.searchLength.emit(this.equipments.length);
           this.loading = false;
           this.cdr.detectChanges();
         
@@ -60,11 +61,13 @@ export class ShowEquiptment implements OnInit{
     const search = this.searchText.trim().toLowerCase();
     if (!search) {
       this.equipments = [...this.allEquipments];
+      this.searchLength.emit(this.equipments.length);
     } else {
       this.equipments = this.allEquipments.filter(equipment =>
         equipment.equipmentID.toLowerCase().includes(search) ||
         equipment.equipmentName.toLowerCase().includes(search)
       );
+      this.searchLength.emit(this.equipments.length);
     }
   }
 }

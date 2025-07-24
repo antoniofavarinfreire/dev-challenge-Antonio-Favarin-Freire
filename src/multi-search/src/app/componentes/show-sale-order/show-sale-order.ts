@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { SalesOrders } from '../../models/salesorders.interface';
 import { SaleordersService } from '../../services/salesorders.service';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +19,7 @@ export class ShowSaleOrder  implements OnInit {
 
 
   @Input() searchText: string = '';
-
+  @Output() searchLength = new EventEmitter<number>();
   constructor(private saleOrdersService: SaleordersService,  private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
@@ -42,6 +42,7 @@ export class ShowSaleOrder  implements OnInit {
         this.salesOrders = data;
         this.allSalesOrders = data;
         this.applyFilter();
+        this.searchLength.emit(this.salesOrders.length);
         this.loading = false;
         this.cdr.detectChanges();
       },
@@ -58,12 +59,15 @@ export class ShowSaleOrder  implements OnInit {
       const search = this.searchText.trim().toLowerCase();
       if (!search) {
         this.salesOrders = [...this.allSalesOrders];
+        this.searchLength.emit(this.salesOrders.length);
+
       } else {
         this.salesOrders = this.allSalesOrders.filter(order =>
           order.salesOrderID.toString().includes(search) ||
           order.materialName.toLowerCase().includes(search) ||
           order.quantity.toString().includes(search)
         );
+        this.searchLength.emit(this.salesOrders.length);
       }
     }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ShowPurchaseOrder } from '../show-purchase-order/show-purchase-order';
 import { ShowSaleOrder } from '../show-sale-order/show-sale-order';
 import { ShowEquiptment } from '../show-equiptment/show-equiptment';
@@ -16,4 +16,16 @@ import { CommonModule } from '@angular/common';
 })
 export class Home {
   searchText: string = '';
+  searchLengths: Record<string, number> = {};
+  lastSearchLength: number = 0;
+
+  constructor(private cdr: ChangeDetectorRef) {}
+  
+  onLengthReceived(source: string, length: number): void {
+     this.searchLengths[source] = length;
+    setTimeout(() => {
+    this.lastSearchLength = Object.values(this.searchLengths).reduce((a, b) => a + b, 0);
+    this.cdr.detectChanges();
+  });
+  }
 }

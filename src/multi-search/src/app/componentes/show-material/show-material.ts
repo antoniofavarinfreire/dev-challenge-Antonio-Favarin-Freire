@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PurchaseOrdersService } from '../../services/purchaseorders.service';
 import { MaterialService } from '../../services/material.service';
@@ -18,7 +18,7 @@ export class ShowMaterial  implements OnInit {
   allMaterials: Material[] = [];
 
   @Input() searchText: string = '';
-  
+  @Output() searchLength = new EventEmitter<number>();
   constructor(private materialService: MaterialService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
@@ -40,6 +40,7 @@ export class ShowMaterial  implements OnInit {
         this.materials = data;
         this.allMaterials = data;
         this.applyFilter();
+        this.searchLength.emit(this.materials.length);
         this.loading = false;
         this.cdr.detectChanges();
       },
@@ -55,11 +56,13 @@ export class ShowMaterial  implements OnInit {
     const search = this.searchText.trim().toLowerCase();
     if (!search) {
       this.materials = [...this.allMaterials];
+      this.searchLength.emit(this.materials.length);
     } else {
       this.materials = this.allMaterials.filter(material =>
         material.materialID.toLowerCase().includes(search) ||
         material.materialName.toLowerCase().includes(search)
       );
+      this.searchLength.emit(this.materials.length);
     }
   }
 }
